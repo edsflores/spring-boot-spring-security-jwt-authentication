@@ -65,9 +65,7 @@ public class AuthController {
         new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
       } catch (Exception e) {
         if(e instanceof org.springframework.security.authentication.BadCredentialsException){
-          return ResponseEntity
-            .status(HttpStatus.INTERNAL_SERVER_ERROR)
-            .body(MessageUtils.buildMessage("Credenciais Inválidas", MessageUtils.WARNING));
+          return MessageUtils.buildErrorMessage("Credenciais Inválidas", MessageUtils.WARNING);
         } else {
           throw e;
         }
